@@ -65,7 +65,7 @@ class Index extends Component {
                 <option value="watch">Watch</option>
                 <option value="accessories">Zubehör</option>
               </select>
-              <table>
+              <ul>
                 { this.state.items.map((item) => {
                   return (
                     <li key={item.id}>
@@ -77,7 +77,7 @@ class Index extends Component {
                     </li>
                   )
                 })}
-              </table>
+              </ul>
             </section>
         </main>
         <style jsx global>{`
@@ -110,7 +110,7 @@ class Index extends Component {
 
           }
 
-          table {
+          ul {
             list-style-type: none;
           }
 

@@ -77,7 +77,7 @@ class AddProduct extends Component {
         <Link href="index"><a>Zurück</a></Link>
         <h1>Artikel Hinzufügen</h1>
         <form onSubmit={this.handleSubmit}>
-        <select name="type" onChange={this.handleChange} value={this.state.type}>
+        <select name="type" onChange={this.handleChange}>
           <option value="iphone">iPhone</option>
           <option value="ipad">iPad</option>
           <option value="mac">Mac</option>
@@ -85,8 +85,8 @@ class AddProduct extends Component {
           <option value="accessories">Zubehör</option>
         </select>
         <input type="text" name="product" placeholder="Produktname" onChange={this.handleChange} />
-        <input type="text" name="price" placeholder="Preis" onChange={this.handleChange}  />
-        <input type="text" name="productid" placeholder="ID" onChange={this.handleChange}  />
+        <input type="number" name="price" placeholder="Preis" onChange={this.handleChange}  />
+        <input type="number" name="productid" placeholder="ID" onChange={this.handleChange}  />
         <select name="state" onChange={this.handleChange} >
           <option value="new">Neu</option>
           <option value="used">Rückläufer</option>
