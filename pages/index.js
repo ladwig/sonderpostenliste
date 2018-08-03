@@ -41,11 +41,11 @@ class Index extends Component {
   itemState(state) {
     switch(state) {
       case "new":
-        return <div className="itemState">Neu/Neuwertig</div>
+        return "Neu/Neuwertig"
       case "used":
-        return <div className="itemState">Rückläufer</div>
+        return "Rückläufer"
       case "demo":
-        return <div className="itemstate">Demoartikel</div>
+        return "Demogerät"
     }
   }
 
@@ -65,7 +65,7 @@ class Index extends Component {
                 <option value="watch">Watch</option>
                 <option value="accessories">Zubehör</option>
               </select>
-              <ul>
+              <table>
                 { this.state.items.map((item) => {
                   return (
                     <li key={item.id}>
@@ -77,7 +77,7 @@ class Index extends Component {
                     </li>
                   )
                 })}
-              </ul>
+              </table>
             </section>
         </main>
         <style jsx global>{`
@@ -108,6 +108,10 @@ class Index extends Component {
 
           itemId {
 
+          }
+
+          table {
+            list-style-type: none;
           }
 
         `}

@@ -84,15 +84,15 @@ class AddProduct extends Component {
           <option value="watch">Watch</option>
           <option value="accessories">Zubehör</option>
         </select>
-        <input type="text" name="product" placeholder="Produktname" onChange={this.handleChange} value={this.state.product} />
-        <input type="text" name="price" placeholder="Preis" onChange={this.handleChange} value={this.state.price} />
-        <input type="text" name="productid" placeholder="ID" onChange={this.handleChange} value={this.state.productid} />
-        <select name="state" onChange={this.handleChange} value={this.state.state}>
+        <input type="text" name="product" placeholder="Produktname" onChange={this.handleChange} />
+        <input type="text" name="price" placeholder="Preis" onChange={this.handleChange}  />
+        <input type="text" name="productid" placeholder="ID" onChange={this.handleChange}  />
+        <select name="state" onChange={this.handleChange} >
           <option value="new">Neu</option>
           <option value="used">Rückläufer</option>
           <option value="demo">Demogerät</option>
         </select>
-        <input type="text" name="number" placeholder="Anzahl" onChange={this.handleChange} value={this.state.number} />
+        <input type="text" name="number" placeholder="Anzahl" onChange={this.handleChange} />
        <button>Hinzufügen</button>
      </form>
     </div>
