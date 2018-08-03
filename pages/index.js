@@ -7,16 +7,8 @@ class Index extends Component {
   constructor(props) {
     super(props)
     this.state = {
-       type: 'iPhone',
-       product: '',
-       productid: '',
-       price: '',
-       state: 'new',
-       number: '1',
        items: []
      }
-  this.handleChange = this.handleChange.bind(this);
-  this.handleSubmit = this.handleSubmit.bind(this)
   }
 
   componentDidMount() {
@@ -41,84 +33,36 @@ class Index extends Component {
     })
   }
 
-
-  handleChange(e) {
-    this.setState({
-      [e.target.name]: e.target.value
-    });
+  removeItem(itemId) {
+  const itemRef = firebase.database().ref(`/items/${itemId}`);
+  itemRef.remove();
   }
 
-  handleSubmit(e) {
-    e.preventDefault();
-    const itemsRef = firebase.database().ref('items')
-    const item = {
-      product: this.state.product,
-      type: this.state.type,
-      productid: this.state.productid,
-      price: this.state.price,
-      state: this.state.state,
-      number: this.state.number
-    }
-    itemsRef.push(item)
-    this.setState({
-      product: '',
-      type: 'iPhone',
-      productid: '',
-      price: '',
-      state: 'new',
-      number: '1'
-    });
-  }
 
   render () {
     return (
       <div>
         <h1>Sonderpostenliste</h1>
-        <Link href="/addproduct">
-          <a>Artikel hinzufügen</a>
-        </Link>
-
-        <form onSubmit={this.handleSubmit}>
-        <select name="type" onChange={this.handleChange} value={this.state.type}>
-          <option value="iphone">iPhone</option>
-          <option value="ipad">iPad</option>
-          <option value="mac">Mac</option>
-          <option value="watch">Watch</option>
-          <option value="accessories">Zubehör</option>
-        </select>
-        <input type="text" name="product" placeholder="Produktname" onChange={this.handleChange} value={this.state.product} />
-        <input type="text" name="price" placeholder="Preis" onChange={this.handleChange} value={this.state.price} />
-        <input type="text" name="productid" placeholder="ID" onChange={this.handleChange} value={this.state.productid} />
-        <select name="state" onChange={this.handleChange} value={this.state.state}>
-          <option value="new">Neu</option>
-          <option value="used">Rückläufer</option>
-          <option value="demo">Demogerät</option>
-        </select>
-        <input type="text" name="number" placeholder="Anzahl" onChange={this.handleChange} value={this.state.number} />
-       <button>Hinzufügen</button>
-     </form>
-
-     <section className='display-item'>
-  <div className="wrapper">
-    <ul>
-      {this.state.items.map((item) => {
-        return (
-          <li key={item.id}>
-            <h3>{item.product}</h3>
-            <div>
-              <div>{item.state}{item.price}</div><div>{item.productid}</div>
-            </div>
-          </li>
-        )
-      })}
-    </ul>
-  </div>
-</section>
-
+        <section className='display-item'>
+          <div className="wrapper">
+            <ul>
+              {this.state.items.map((item) => {
+                return (
+                  <li key={item.id}>
+                    <h3>{item.product}</h3>
+                    <div>
+                      <div>{item.state}{item.price}</div><div>{item.productid}</div>
+                        <button onClick={() => this.removeItem(item.id)}>Remove Item</button>
+                    </div>
+                  </li>
+                )
+              })}
+            </ul>
+          </div>
+        </section>
       </div>
     )
   }
-
 }
 
 export default Index
