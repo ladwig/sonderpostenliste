@@ -1,28 +1,29 @@
 import { Component } from 'react'
 import Link from 'next/link'
-import fire from './fire'
+import firebase from '../components/firebase'
 
 class Index extends Component {
 
   constructor(props) {
     super(props)
-    this.state = { messages: [] }
+    this.state = {
+       type: '',
+       product: '',
+       productid: '',
+       price: '',
+       state: '',
+       number: ''
+     }
+  this.handleChange = this.handleChange.bind(this);
   }
 
   componentWillMount(){
-  /* Create reference to messages in Firebase Database */
-  let messagesRef = fire.database().ref('messages').orderByKey().limitToLast(100);
-  messagesRef.on('child_added', snapshot => {
-    /* Update React state when message is added at Firebase Database */
-    let message = { text: snapshot.val(), id: snapshot.key };
-    this.setState({ messages: [message].concat(this.state.messages) });
-  })
 }
-addMessage(e){
-  e.preventDefault(); // <- prevent form submit from reloading the page
-  /* Send the message to Firebase */
-  fire.database().ref('messages').push( this.inputEl.value );
-  this.inputEl.value = ''; // <- clear the input
+
+handleChange(e) {
+  this.setState({
+    [e.target.name]: e.target.value
+  });
 }
 
   render () {
@@ -33,13 +34,25 @@ addMessage(e){
           <a>Artikel hinzufügen</a>
         </Link>
 
-        <form onSubmit={this.addMessage.bind(this)}>
-       <input type="text" ref={ el => this.inputEl = el }/>
+        <form>
+        <select name="type" onChange={this.handleChange} value={this.state.type}>
+          <option value="iphone">iPhone</option>
+          <option value="ipad">iPad</option>
+          <option value="mac">Mac</option>
+          <option value="watch">Watch</option>
+          <option value="accessories">Zubehör</option>
+        </select>
+        <input type="text" name="name" placeholder="Produktname" onChange={this.handleChange} value={this.state.name} />
+        <input type="text" name="price" placeholder="Preis" onChange={this.handleChange} value={this.state.price} />
+        <input type="text" name="productid" placeholder="ID" onChange={this.handleChange} value={this.state.productid} />
+        <select name="state" onChange={this.handleChange} value={this.state.state}>
+          <option value="new">Neu</option>
+          <option value="used">Rückläufer</option>
+          <option value="demo">Demogerät</option>
+        </select>
+        <input type="text" name="number" placeholder="Anzahl" onChange={this.handleChange} value={this.state.number} />
        <input type="submit"/>
        <ul>
-         { /* Render the list of messages */
-           this.state.messages.map( message => <li key={message.id}>{message.text}</li> )
-         }
        </ul>
      </form>
       </div>

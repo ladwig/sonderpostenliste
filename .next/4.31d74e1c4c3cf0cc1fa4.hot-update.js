@@ -1,104 +1,13 @@
-module.exports =
-/******/ (function(modules) { // webpackBootstrap
-/******/ 	// The module cache
-/******/ 	var installedModules = {};
-/******/
-/******/ 	// The require function
-/******/ 	function __webpack_require__(moduleId) {
-/******/
-/******/ 		// Check if module is in cache
-/******/ 		if(installedModules[moduleId]) {
-/******/ 			return installedModules[moduleId].exports;
-/******/ 		}
-/******/ 		// Create a new module (and put it into the cache)
-/******/ 		var module = installedModules[moduleId] = {
-/******/ 			i: moduleId,
-/******/ 			l: false,
-/******/ 			exports: {}
-/******/ 		};
-/******/
-/******/ 		// Execute the module function
-/******/ 		var threw = true;
-/******/ 		try {
-/******/ 			modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
-/******/ 			threw = false;
-/******/ 		} finally {
-/******/ 			if(threw) delete installedModules[moduleId];
-/******/ 		}
-/******/
-/******/ 		// Flag the module as loaded
-/******/ 		module.l = true;
-/******/
-/******/ 		// Return the exports of the module
-/******/ 		return module.exports;
-/******/ 	}
-/******/
-/******/
-/******/ 	// expose the modules object (__webpack_modules__)
-/******/ 	__webpack_require__.m = modules;
-/******/
-/******/ 	// expose the module cache
-/******/ 	__webpack_require__.c = installedModules;
-/******/
-/******/ 	// define getter function for harmony exports
-/******/ 	__webpack_require__.d = function(exports, name, getter) {
-/******/ 		if(!__webpack_require__.o(exports, name)) {
-/******/ 			Object.defineProperty(exports, name, {
-/******/ 				configurable: false,
-/******/ 				enumerable: true,
-/******/ 				get: getter
-/******/ 			});
-/******/ 		}
-/******/ 	};
-/******/
-/******/ 	// getDefaultExport function for compatibility with non-harmony modules
-/******/ 	__webpack_require__.n = function(module) {
-/******/ 		var getter = module && module.__esModule ?
-/******/ 			function getDefault() { return module['default']; } :
-/******/ 			function getModuleExports() { return module; };
-/******/ 		__webpack_require__.d(getter, 'a', getter);
-/******/ 		return getter;
-/******/ 	};
-/******/
-/******/ 	// Object.prototype.hasOwnProperty.call
-/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
-/******/
-/******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "";
-/******/
-/******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 3);
-/******/ })
-/************************************************************************/
-/******/ ({
-
-/***/ "./components/firebase.js":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_firebase__ = __webpack_require__("firebase");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_firebase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_firebase__);
-
-var config = {
-  apiKey: "AIzaSyCy6RYP2fHqCzP_LF68zvJlKG8UBzJIUA0",
-  authDomain: "sonderpostenliste.firebaseapp.com",
-  databaseURL: "https://sonderpostenliste.firebaseio.com",
-  projectId: "sonderpostenliste",
-  storageBucket: "sonderpostenliste.appspot.com",
-  messagingSenderId: "388109605764"
-};
-/* unused harmony default export */ var _unused_webpack_default_export = (!__WEBPACK_IMPORTED_MODULE_0_firebase__["apps"].length ? __WEBPACK_IMPORTED_MODULE_0_firebase__["initializeApp"](config) : __WEBPACK_IMPORTED_MODULE_0_firebase__["app"]());
-
-/***/ }),
+webpackHotUpdate(4,{
 
 /***/ "./pages/index.js":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__("react");
+/* WEBPACK VAR INJECTION */(function(module) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__("./node_modules/react/index.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_next_link__ = __webpack_require__("next/link");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_next_link__ = __webpack_require__("./node_modules/next/link.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_next_link___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_next_link__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_firebase__ = __webpack_require__("./components/firebase.js");
 var _jsxFileName = "/Users/danielladwig/Documents/Web/sonderposten/pages/index.js";
@@ -116,9 +25,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
 function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 
 
@@ -143,13 +52,28 @@ function (_Component) {
       state: '',
       number: ''
     };
-    _this.handleChange = _this.handleChange.bind(_assertThisInitialized(_this));
     return _this;
   }
 
   _createClass(Index, [{
     key: "componentWillMount",
-    value: function componentWillMount() {}
+    value: function componentWillMount() {
+      var _this2 = this;
+
+      /* Create reference to messages in Firebase Database */
+      var productsRef = __WEBPACK_IMPORTED_MODULE_2__components_firebase__["a" /* default */].database().ref('products').orderByKey().limitToLast(100);
+      productsRef.on('child_added', function (snapshot) {
+        /* Update React state when message is added at Firebase Database */
+        var product = {
+          text: snapshot.val(),
+          id: snapshot.key
+        };
+
+        _this2.setState({
+          products: [product].concat(_this2.state.product)
+        });
+      });
+    }
   }, {
     key: "handleChange",
     value: function handleChange(e) {
@@ -161,28 +85,28 @@ function (_Component) {
       return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 31
+          lineNumber: 37
         }
       }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("h1", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 32
+          lineNumber: 38
         }
       }, "Sonderpostenliste"), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_next_link___default.a, {
         href: "/addproduct",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 33
+          lineNumber: 39
         }
       }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("a", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 34
+          lineNumber: 40
         }
       }, "Artikel hinzuf\xFCgen")), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("form", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 37
+          lineNumber: 43
         }
       }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("select", {
         name: "type",
@@ -190,37 +114,37 @@ function (_Component) {
         value: this.state.type,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 38
+          lineNumber: 44
         }
       }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("option", {
         value: "iphone",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 39
+          lineNumber: 45
         }
       }, "iPhone"), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("option", {
         value: "ipad",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 40
+          lineNumber: 46
         }
       }, "iPad"), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("option", {
         value: "mac",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 41
+          lineNumber: 47
         }
       }, "Mac"), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("option", {
         value: "watch",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 42
+          lineNumber: 48
         }
       }, "Watch"), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("option", {
         value: "accessories",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 43
+          lineNumber: 49
         }
       }, "Zubeh\xF6r")), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input", {
         type: "text",
@@ -230,7 +154,7 @@ function (_Component) {
         value: this.state.name,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 45
+          lineNumber: 51
         }
       }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input", {
         type: "text",
@@ -240,7 +164,7 @@ function (_Component) {
         value: this.state.price,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 46
+          lineNumber: 52
         }
       }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input", {
         type: "text",
@@ -250,7 +174,7 @@ function (_Component) {
         value: this.state.productid,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 47
+          lineNumber: 53
         }
       }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("select", {
         name: "state",
@@ -258,46 +182,46 @@ function (_Component) {
         value: this.state.state,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 48
+          lineNumber: 54
         }
       }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("option", {
         value: "new",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 49
+          lineNumber: 55
         }
       }, "Neu"), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("option", {
         value: "used",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 50
+          lineNumber: 56
         }
       }, "R\xFCckl\xE4ufer"), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("option", {
         value: "demo",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 51
+          lineNumber: 57
         }
       }, "Demoger\xE4t")), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input", {
         type: "text",
         name: "number",
         placeholder: "Anzahl",
         onChange: this.handleChange,
-        value: this.state.number,
+        value: this.state.productid,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 53
+          lineNumber: 59
         }
       }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input", {
         type: "submit",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 54
+          lineNumber: 60
         }
       }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("ul", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 55
+          lineNumber: 61
         }
       })));
     }
@@ -307,37 +231,27 @@ function (_Component) {
 }(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]);
 
 /* harmony default export */ __webpack_exports__["default"] = (Index);
+    (function (Component, route) {
+      if(!Component) return
+      if (false) return
+      module.hot.accept()
+      Component.__route = route
 
-/***/ }),
+      if (module.hot.status() === 'idle') return
 
-/***/ 3:
-/***/ (function(module, exports, __webpack_require__) {
+      var components = next.router.components
+      for (var r in components) {
+        if (!components.hasOwnProperty(r)) continue
 
-module.exports = __webpack_require__("./pages/index.js");
-
-
-/***/ }),
-
-/***/ "firebase":
-/***/ (function(module, exports) {
-
-module.exports = require("firebase");
-
-/***/ }),
-
-/***/ "next/link":
-/***/ (function(module, exports) {
-
-module.exports = require("next/link");
-
-/***/ }),
-
-/***/ "react":
-/***/ (function(module, exports) {
-
-module.exports = require("react");
+        if (components[r].Component.__route === route) {
+          next.router.update(r, Component)
+        }
+      }
+    })(typeof __webpack_exports__ !== 'undefined' ? __webpack_exports__.default : (module.exports.default || module.exports), "/")
+  
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__("./node_modules/webpack/buildin/harmony-module.js")(module)))
 
 /***/ })
 
-/******/ });
-//# sourceMappingURL=index.js.map
+})
+//# sourceMappingURL=4.31d74e1c4c3cf0cc1fa4.hot-update.js.map
