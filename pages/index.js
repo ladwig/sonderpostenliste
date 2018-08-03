@@ -12,14 +12,35 @@ class Index extends Component {
        productid: '',
        price: '',
        state: 'new',
-       number: '1'
+       number: '1',
+       items: []
      }
   this.handleChange = this.handleChange.bind(this);
   this.handleSubmit = this.handleSubmit.bind(this)
   }
 
-  componentWillMount(){
+  componentDidMount() {
+    const itemsRef = firebase.database().ref('items')
+    itemsRef.on('value', (snapshot) => {
+      let items = snapshot.val()
+      let newState = []
+      for (let item in items) {
+        newState.push({
+          id: item,
+          type: items[item].type,
+          product: items[item].product,
+          productid: items[item].productid,
+          price: items[item].price,
+          state: items[item].state,
+          number: items[item].number
+        })
+      }
+      this.setState({
+        items: newState
+      })
+    })
   }
+
 
   handleChange(e) {
     this.setState({
@@ -29,7 +50,7 @@ class Index extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    const itemsRef = firebase.database().ref('items');
+    const itemsRef = firebase.database().ref('items')
     const item = {
       product: this.state.product,
       type: this.state.type,
@@ -38,10 +59,10 @@ class Index extends Component {
       state: this.state.state,
       number: this.state.number
     }
-    itemsRef.push(item);
+    itemsRef.push(item)
     this.setState({
-      type: 'iPhone',
       product: '',
+      type: 'iPhone',
       productid: '',
       price: '',
       state: 'new',
@@ -76,6 +97,23 @@ class Index extends Component {
         <input type="text" name="number" placeholder="Anzahl" onChange={this.handleChange} value={this.state.number} />
        <button>Hinzufügen</button>
      </form>
+
+     <section className='display-item'>
+  <div className="wrapper">
+    <ul>
+      {this.state.items.map((item) => {
+        return (
+          <li key={item.id}>
+            <h3>{item.product}</h3>
+            <div>
+              <div>{item.state}{item.price}</div><div>{item.productid}</div>
+            </div>
+          </li>
+        )
+      })}
+    </ul>
+  </div>
+</section>
 
       </div>
     )

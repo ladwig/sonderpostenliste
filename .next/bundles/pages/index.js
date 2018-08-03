@@ -45576,7 +45576,8 @@ function (_Component) {
       productid: '',
       price: '',
       state: 'new',
-      number: '1'
+      number: '1',
+      items: []
     };
     _this.handleChange = _this.handleChange.bind(_assertThisInitialized(_this));
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
@@ -45584,8 +45585,32 @@ function (_Component) {
   }
 
   _createClass(Index, [{
-    key: "componentWillMount",
-    value: function componentWillMount() {}
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      var _this2 = this;
+
+      var itemsRef = __WEBPACK_IMPORTED_MODULE_2__components_firebase__["a" /* default */].database().ref('items');
+      itemsRef.on('value', function (snapshot) {
+        var items = snapshot.val();
+        var newState = [];
+
+        for (var item in items) {
+          newState.push({
+            id: item,
+            type: items[item].type,
+            product: items[item].product,
+            productid: items[item].productid,
+            price: items[item].price,
+            state: items[item].state,
+            number: items[item].number
+          });
+        }
+
+        _this2.setState({
+          items: newState
+        });
+      });
+    }
   }, {
     key: "handleChange",
     value: function handleChange(e) {
@@ -45606,8 +45631,8 @@ function (_Component) {
       };
       itemsRef.push(item);
       this.setState({
-        type: 'iPhone',
         product: '',
+        type: 'iPhone',
         productid: '',
         price: '',
         state: 'new',
@@ -45620,29 +45645,29 @@ function (_Component) {
       return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 54
+          lineNumber: 75
         }
       }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("h1", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 55
+          lineNumber: 76
         }
       }, "Sonderpostenliste"), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_next_link___default.a, {
         href: "/addproduct",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 56
+          lineNumber: 77
         }
       }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("a", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 57
+          lineNumber: 78
         }
       }, "Artikel hinzuf\xFCgen")), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("form", {
         onSubmit: this.handleSubmit,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 60
+          lineNumber: 81
         }
       }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("select", {
         name: "type",
@@ -45650,37 +45675,37 @@ function (_Component) {
         value: this.state.type,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 61
+          lineNumber: 82
         }
       }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("option", {
         value: "iphone",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 62
+          lineNumber: 83
         }
       }, "iPhone"), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("option", {
         value: "ipad",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 63
+          lineNumber: 84
         }
       }, "iPad"), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("option", {
         value: "mac",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 64
+          lineNumber: 85
         }
       }, "Mac"), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("option", {
         value: "watch",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 65
+          lineNumber: 86
         }
       }, "Watch"), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("option", {
         value: "accessories",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 66
+          lineNumber: 87
         }
       }, "Zubeh\xF6r")), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input", {
         type: "text",
@@ -45690,7 +45715,7 @@ function (_Component) {
         value: this.state.product,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 68
+          lineNumber: 89
         }
       }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input", {
         type: "text",
@@ -45700,7 +45725,7 @@ function (_Component) {
         value: this.state.price,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 69
+          lineNumber: 90
         }
       }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input", {
         type: "text",
@@ -45710,7 +45735,7 @@ function (_Component) {
         value: this.state.productid,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 70
+          lineNumber: 91
         }
       }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("select", {
         name: "state",
@@ -45718,25 +45743,25 @@ function (_Component) {
         value: this.state.state,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 71
+          lineNumber: 92
         }
       }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("option", {
         value: "new",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 72
+          lineNumber: 93
         }
       }, "Neu"), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("option", {
         value: "used",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 73
+          lineNumber: 94
         }
       }, "R\xFCckl\xE4ufer"), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("option", {
         value: "demo",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 74
+          lineNumber: 95
         }
       }, "Demoger\xE4t")), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input", {
         type: "text",
@@ -45746,14 +45771,59 @@ function (_Component) {
         value: this.state.number,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 76
+          lineNumber: 97
         }
       }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("button", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 77
+          lineNumber: 98
         }
-      }, "Hinzuf\xFCgen")));
+      }, "Hinzuf\xFCgen")), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("section", {
+        className: "display-item",
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 101
+        }
+      }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", {
+        className: "wrapper",
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 102
+        }
+      }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("ul", {
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 103
+        }
+      }, this.state.items.map(function (item) {
+        return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("li", {
+          key: item.id,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 106
+          }
+        }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("h3", {
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 107
+          }
+        }, item.product), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", {
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 108
+          }
+        }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", {
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 109
+          }
+        }, item.state, item.price), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", {
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 109
+          }
+        }, item.productid)));
+      })))));
     }
   }]);
 
