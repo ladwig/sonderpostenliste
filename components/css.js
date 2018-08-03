@@ -14,23 +14,27 @@ export default css`
     margin-left: 3vh;
   }
 
-  itemInfo {
+  .itemInfo {
 
   }
 
-  itemDescription {
+  .itemDescription {
 
   }
 
-  itemState {
+  .itemState {
 
   }
 
-  itemId {
-
+  .itemId {
+    float: right;
+    margin-right: 30px;
+    border: 1px solid black;
   }
 
   ul {
+    background: lightgray;
+    width: 650px;
     list-style-type: none;
   }
 `

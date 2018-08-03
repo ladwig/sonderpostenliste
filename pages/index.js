@@ -8,7 +8,8 @@ class Index extends Component {
   constructor(props) {
     super(props)
     this.state = {
-       items: []
+       items: [],
+       showbutton: 'block'
      }
   }
 
@@ -37,6 +38,10 @@ class Index extends Component {
   removeItem(itemId) {
   const itemRef = firebase.database().ref(`/items/${itemId}`);
   itemRef.remove();
+  }
+
+  confirmRemoveItem(itemId) {
+
   }
 
   itemState(state) {
@@ -72,8 +77,9 @@ class Index extends Component {
                     <li key={item.id}>
                       <h3>{item.product}</h3>
                       <div className="itemtInfo">
-                        <div className="itemDescription">{this.itemState(item.state)}{item.price + "€"}</div><div className="itemtId">{item.productid}</div>
-                          <button onClick={() => this.removeItem(item.id)}>Remove Item</button>
+                        <div className="itemDescription">{this.itemState(item.state)}{item.price + "€"}</div><div className="itemId">{item.productid}</div>
+                          <div ClassName="removeItemButton">Entfernen</div>
+                          <div ClassName="confirmRemoveButton" onClick={() => this.removeItem(item.id)} style={{ display: this.state.showbutton }}>Bestätigen</div>
                       </div>
                     </li>
                   )
