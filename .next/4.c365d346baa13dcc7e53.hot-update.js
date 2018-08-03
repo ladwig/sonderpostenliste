@@ -1,82 +1,10 @@
-module.exports =
-/******/ (function(modules) { // webpackBootstrap
-/******/ 	// The module cache
-/******/ 	var installedModules = {};
-/******/
-/******/ 	// The require function
-/******/ 	function __webpack_require__(moduleId) {
-/******/
-/******/ 		// Check if module is in cache
-/******/ 		if(installedModules[moduleId]) {
-/******/ 			return installedModules[moduleId].exports;
-/******/ 		}
-/******/ 		// Create a new module (and put it into the cache)
-/******/ 		var module = installedModules[moduleId] = {
-/******/ 			i: moduleId,
-/******/ 			l: false,
-/******/ 			exports: {}
-/******/ 		};
-/******/
-/******/ 		// Execute the module function
-/******/ 		var threw = true;
-/******/ 		try {
-/******/ 			modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
-/******/ 			threw = false;
-/******/ 		} finally {
-/******/ 			if(threw) delete installedModules[moduleId];
-/******/ 		}
-/******/
-/******/ 		// Flag the module as loaded
-/******/ 		module.l = true;
-/******/
-/******/ 		// Return the exports of the module
-/******/ 		return module.exports;
-/******/ 	}
-/******/
-/******/
-/******/ 	// expose the modules object (__webpack_modules__)
-/******/ 	__webpack_require__.m = modules;
-/******/
-/******/ 	// expose the module cache
-/******/ 	__webpack_require__.c = installedModules;
-/******/
-/******/ 	// define getter function for harmony exports
-/******/ 	__webpack_require__.d = function(exports, name, getter) {
-/******/ 		if(!__webpack_require__.o(exports, name)) {
-/******/ 			Object.defineProperty(exports, name, {
-/******/ 				configurable: false,
-/******/ 				enumerable: true,
-/******/ 				get: getter
-/******/ 			});
-/******/ 		}
-/******/ 	};
-/******/
-/******/ 	// getDefaultExport function for compatibility with non-harmony modules
-/******/ 	__webpack_require__.n = function(module) {
-/******/ 		var getter = module && module.__esModule ?
-/******/ 			function getDefault() { return module['default']; } :
-/******/ 			function getModuleExports() { return module; };
-/******/ 		__webpack_require__.d(getter, 'a', getter);
-/******/ 		return getter;
-/******/ 	};
-/******/
-/******/ 	// Object.prototype.hasOwnProperty.call
-/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
-/******/
-/******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "";
-/******/
-/******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 3);
-/******/ })
-/************************************************************************/
-/******/ ({
+webpackHotUpdate(4,{
 
 /***/ "./components/firebase.js":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_firebase__ = __webpack_require__("firebase");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_firebase__ = __webpack_require__("./node_modules/firebase/dist/index.cjs.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_firebase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_firebase__);
 
 var config = {
@@ -96,9 +24,9 @@ var config = {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__("react");
+/* WEBPACK VAR INJECTION */(function(module) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__("./node_modules/react/index.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_next_link__ = __webpack_require__("next/link");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_next_link__ = __webpack_require__("./node_modules/next/link.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_next_link___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_next_link__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_firebase__ = __webpack_require__("./components/firebase.js");
 var _jsxFileName = "/Users/danielladwig/Documents/Web/sonderposten/pages/index.js";
@@ -136,12 +64,12 @@ function (_Component) {
 
     _this = _possibleConstructorReturn(this, (Index.__proto__ || Object.getPrototypeOf(Index)).call(this, props));
     _this.state = {
-      type: 'iPhone',
+      type: '',
       product: '',
       productid: '',
       price: '',
-      state: 'new',
-      number: '1'
+      state: '',
+      number: ''
     };
     _this.handleChange = _this.handleChange.bind(_assertThisInitialized(_this));
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
@@ -162,21 +90,13 @@ function (_Component) {
       e.preventDefault();
       var itemsRef = __WEBPACK_IMPORTED_MODULE_2__components_firebase__["a" /* default */].database().ref('items');
       var item = {
-        product: this.state.product,
-        type: this.state.type,
-        productid: this.state.productid,
-        price: this.state.price,
-        state: this.state.state,
-        number: this.state.number
+        title: this.state.currentItem,
+        user: this.state.username
       };
       itemsRef.push(item);
       this.setState({
-        type: 'iPhone',
-        product: '',
-        productid: '',
-        price: '',
-        state: 'new',
-        number: '1'
+        currentItem: '',
+        username: ''
       });
     }
   }, {
@@ -185,29 +105,29 @@ function (_Component) {
       return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 54
+          lineNumber: 46
         }
       }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("h1", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 55
+          lineNumber: 47
         }
       }, "Sonderpostenliste"), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_next_link___default.a, {
         href: "/addproduct",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 56
+          lineNumber: 48
         }
       }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("a", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 57
+          lineNumber: 49
         }
       }, "Artikel hinzuf\xFCgen")), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("form", {
         onSubmit: this.handleSubmit,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 60
+          lineNumber: 52
         }
       }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("select", {
         name: "type",
@@ -215,47 +135,47 @@ function (_Component) {
         value: this.state.type,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 61
+          lineNumber: 53
         }
       }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("option", {
         value: "iphone",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 62
+          lineNumber: 54
         }
       }, "iPhone"), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("option", {
         value: "ipad",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 63
+          lineNumber: 55
         }
       }, "iPad"), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("option", {
         value: "mac",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 64
+          lineNumber: 56
         }
       }, "Mac"), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("option", {
         value: "watch",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 65
+          lineNumber: 57
         }
       }, "Watch"), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("option", {
         value: "accessories",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 66
+          lineNumber: 58
         }
       }, "Zubeh\xF6r")), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input", {
         type: "text",
-        name: "product",
+        name: "name",
         placeholder: "Produktname",
         onChange: this.handleChange,
-        value: this.state.product,
+        value: this.state.name,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 68
+          lineNumber: 60
         }
       }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input", {
         type: "text",
@@ -265,7 +185,7 @@ function (_Component) {
         value: this.state.price,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 69
+          lineNumber: 61
         }
       }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input", {
         type: "text",
@@ -275,7 +195,7 @@ function (_Component) {
         value: this.state.productid,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 70
+          lineNumber: 62
         }
       }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("select", {
         name: "state",
@@ -283,25 +203,25 @@ function (_Component) {
         value: this.state.state,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 71
+          lineNumber: 63
         }
       }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("option", {
         value: "new",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 72
+          lineNumber: 64
         }
       }, "Neu"), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("option", {
         value: "used",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 73
+          lineNumber: 65
         }
       }, "R\xFCckl\xE4ufer"), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("option", {
         value: "demo",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 74
+          lineNumber: 66
         }
       }, "Demoger\xE4t")), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input", {
         type: "text",
@@ -311,14 +231,20 @@ function (_Component) {
         value: this.state.number,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 76
+          lineNumber: 68
         }
-      }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("button", {
+      }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input", {
+        type: "submit",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 77
+          lineNumber: 69
         }
-      }, "Hinzuf\xFCgen")));
+      }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("ul", {
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 70
+        }
+      })));
     }
   }]);
 
@@ -326,37 +252,27 @@ function (_Component) {
 }(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]);
 
 /* harmony default export */ __webpack_exports__["default"] = (Index);
+    (function (Component, route) {
+      if(!Component) return
+      if (false) return
+      module.hot.accept()
+      Component.__route = route
 
-/***/ }),
+      if (module.hot.status() === 'idle') return
 
-/***/ 3:
-/***/ (function(module, exports, __webpack_require__) {
+      var components = next.router.components
+      for (var r in components) {
+        if (!components.hasOwnProperty(r)) continue
 
-module.exports = __webpack_require__("./pages/index.js");
-
-
-/***/ }),
-
-/***/ "firebase":
-/***/ (function(module, exports) {
-
-module.exports = require("firebase");
-
-/***/ }),
-
-/***/ "next/link":
-/***/ (function(module, exports) {
-
-module.exports = require("next/link");
-
-/***/ }),
-
-/***/ "react":
-/***/ (function(module, exports) {
-
-module.exports = require("react");
+        if (components[r].Component.__route === route) {
+          next.router.update(r, Component)
+        }
+      }
+    })(typeof __webpack_exports__ !== 'undefined' ? __webpack_exports__.default : (module.exports.default || module.exports), "/")
+  
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__("./node_modules/webpack/buildin/harmony-module.js")(module)))
 
 /***/ })
 
-/******/ });
-//# sourceMappingURL=index.js.map
+})
+//# sourceMappingURL=4.c365d346baa13dcc7e53.hot-update.js.map

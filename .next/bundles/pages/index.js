@@ -18,7 +18,7 @@ var config = {
   storageBucket: "sonderpostenliste.appspot.com",
   messagingSenderId: "388109605764"
 };
-/* unused harmony default export */ var _unused_webpack_default_export = (!__WEBPACK_IMPORTED_MODULE_0_firebase__["apps"].length ? __WEBPACK_IMPORTED_MODULE_0_firebase__["initializeApp"](config) : __WEBPACK_IMPORTED_MODULE_0_firebase__["app"]());
+/* harmony default export */ __webpack_exports__["a"] = (!__WEBPACK_IMPORTED_MODULE_0_firebase__["apps"].length ? __WEBPACK_IMPORTED_MODULE_0_firebase__["initializeApp"](config) : __WEBPACK_IMPORTED_MODULE_0_firebase__["app"]());
 
 /***/ }),
 
@@ -45571,14 +45571,15 @@ function (_Component) {
 
     _this = _possibleConstructorReturn(this, (Index.__proto__ || Object.getPrototypeOf(Index)).call(this, props));
     _this.state = {
-      type: '',
+      type: 'iPhone',
       product: '',
       productid: '',
       price: '',
-      state: '',
-      number: ''
+      state: 'new',
+      number: '1'
     };
     _this.handleChange = _this.handleChange.bind(_assertThisInitialized(_this));
+    _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -45591,33 +45592,57 @@ function (_Component) {
       this.setState(_defineProperty({}, e.target.name, e.target.value));
     }
   }, {
+    key: "handleSubmit",
+    value: function handleSubmit(e) {
+      e.preventDefault();
+      var itemsRef = __WEBPACK_IMPORTED_MODULE_2__components_firebase__["a" /* default */].database().ref('items');
+      var item = {
+        product: this.state.product,
+        type: this.state.type,
+        productid: this.state.productid,
+        price: this.state.price,
+        state: this.state.state,
+        number: this.state.number
+      };
+      itemsRef.push(item);
+      this.setState({
+        type: 'iPhone',
+        product: '',
+        productid: '',
+        price: '',
+        state: 'new',
+        number: '1'
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
       return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 31
+          lineNumber: 54
         }
       }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("h1", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 32
+          lineNumber: 55
         }
       }, "Sonderpostenliste"), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_next_link___default.a, {
         href: "/addproduct",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 33
+          lineNumber: 56
         }
       }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("a", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 34
+          lineNumber: 57
         }
       }, "Artikel hinzuf\xFCgen")), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("form", {
+        onSubmit: this.handleSubmit,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 37
+          lineNumber: 60
         }
       }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("select", {
         name: "type",
@@ -45625,47 +45650,47 @@ function (_Component) {
         value: this.state.type,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 38
+          lineNumber: 61
         }
       }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("option", {
         value: "iphone",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 39
+          lineNumber: 62
         }
       }, "iPhone"), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("option", {
         value: "ipad",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 40
+          lineNumber: 63
         }
       }, "iPad"), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("option", {
         value: "mac",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 41
+          lineNumber: 64
         }
       }, "Mac"), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("option", {
         value: "watch",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 42
+          lineNumber: 65
         }
       }, "Watch"), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("option", {
         value: "accessories",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 43
+          lineNumber: 66
         }
       }, "Zubeh\xF6r")), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input", {
         type: "text",
-        name: "name",
+        name: "product",
         placeholder: "Produktname",
         onChange: this.handleChange,
-        value: this.state.name,
+        value: this.state.product,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 45
+          lineNumber: 68
         }
       }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input", {
         type: "text",
@@ -45675,7 +45700,7 @@ function (_Component) {
         value: this.state.price,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 46
+          lineNumber: 69
         }
       }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input", {
         type: "text",
@@ -45685,7 +45710,7 @@ function (_Component) {
         value: this.state.productid,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 47
+          lineNumber: 70
         }
       }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("select", {
         name: "state",
@@ -45693,25 +45718,25 @@ function (_Component) {
         value: this.state.state,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 48
+          lineNumber: 71
         }
       }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("option", {
         value: "new",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 49
+          lineNumber: 72
         }
       }, "Neu"), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("option", {
         value: "used",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 50
+          lineNumber: 73
         }
       }, "R\xFCckl\xE4ufer"), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("option", {
         value: "demo",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 51
+          lineNumber: 74
         }
       }, "Demoger\xE4t")), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input", {
         type: "text",
@@ -45721,20 +45746,14 @@ function (_Component) {
         value: this.state.number,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 53
+          lineNumber: 76
         }
-      }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input", {
-        type: "submit",
+      }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("button", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 54
+          lineNumber: 77
         }
-      }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("ul", {
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 55
-        }
-      })));
+      }, "Hinzuf\xFCgen")));
     }
   }]);
 

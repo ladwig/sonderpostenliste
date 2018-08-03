@@ -7,24 +7,47 @@ class Index extends Component {
   constructor(props) {
     super(props)
     this.state = {
-       type: '',
+       type: 'iPhone',
        product: '',
        productid: '',
        price: '',
-       state: '',
-       number: ''
+       state: 'new',
+       number: '1'
      }
   this.handleChange = this.handleChange.bind(this);
+  this.handleSubmit = this.handleSubmit.bind(this)
   }
 
   componentWillMount(){
-}
+  }
 
-handleChange(e) {
-  this.setState({
-    [e.target.name]: e.target.value
-  });
-}
+  handleChange(e) {
+    this.setState({
+      [e.target.name]: e.target.value
+    });
+  }
+
+  handleSubmit(e) {
+    e.preventDefault();
+    const itemsRef = firebase.database().ref('items');
+    const item = {
+      product: this.state.product,
+      type: this.state.type,
+      productid: this.state.productid,
+      price: this.state.price,
+      state: this.state.state,
+      number: this.state.number
+    }
+    itemsRef.push(item);
+    this.setState({
+      type: 'iPhone',
+      product: '',
+      productid: '',
+      price: '',
+      state: 'new',
+      number: '1'
+    });
+  }
 
   render () {
     return (
@@ -34,7 +57,7 @@ handleChange(e) {
           <a>Artikel hinzufügen</a>
         </Link>
 
-        <form>
+        <form onSubmit={this.handleSubmit}>
         <select name="type" onChange={this.handleChange} value={this.state.type}>
           <option value="iphone">iPhone</option>
           <option value="ipad">iPad</option>
@@ -42,7 +65,7 @@ handleChange(e) {
           <option value="watch">Watch</option>
           <option value="accessories">Zubehör</option>
         </select>
-        <input type="text" name="name" placeholder="Produktname" onChange={this.handleChange} value={this.state.name} />
+        <input type="text" name="product" placeholder="Produktname" onChange={this.handleChange} value={this.state.product} />
         <input type="text" name="price" placeholder="Preis" onChange={this.handleChange} value={this.state.price} />
         <input type="text" name="productid" placeholder="ID" onChange={this.handleChange} value={this.state.productid} />
         <select name="state" onChange={this.handleChange} value={this.state.state}>
@@ -51,10 +74,9 @@ handleChange(e) {
           <option value="demo">Demogerät</option>
         </select>
         <input type="text" name="number" placeholder="Anzahl" onChange={this.handleChange} value={this.state.number} />
-       <input type="submit"/>
-       <ul>
-       </ul>
+       <button>Hinzufügen</button>
      </form>
+
       </div>
     )
   }
