@@ -38,28 +38,80 @@ class Index extends Component {
   itemRef.remove();
   }
 
+  itemState(state) {
+    switch(state) {
+      case "new":
+        return <div className="itemState">Neu/Neuwertig</div>
+      case "used":
+        return <div className="itemState">Rückläufer</div>
+      case "demo":
+        return <div className="itemstate">Demoartikel</div>
+    }
+  }
+
 
   render () {
     return (
       <div>
-        <h1>Sonderpostenliste</h1>
-        <section className='display-item'>
-          <div className="wrapper">
-            <ul>
-              {this.state.items.map((item) => {
-                return (
-                  <li key={item.id}>
-                    <h3>{item.product}</h3>
-                    <div>
-                      <div>{item.state}{item.price}</div><div>{item.productid}</div>
-                        <button onClick={() => this.removeItem(item.id)}>Remove Item</button>
-                    </div>
-                  </li>
-                )
-              })}
-            </ul>
-          </div>
-        </section>
+        <main>
+          <Link href="addproduct"><a>Artikel hinzufügen</a></Link>
+          <h1>Sonderpostenliste</h1>
+            <section className="wrapper">
+              <select name="whichOne">
+                <option selected="selected" value="all">Alle</option>
+                <option value="iphone">iPhone</option>
+                <option value="ipad">iPad</option>
+                <option value="mac">Mac</option>
+                <option value="watch">Watch</option>
+                <option value="accessories">Zubehör</option>
+              </select>
+              <ul>
+                { this.state.items.map((item) => {
+                  return (
+                    <li key={item.id}>
+                      <h3>{item.product}</h3>
+                      <div className="itemtInfo">
+                        <div className="itemDescription">{this.itemState(item.state)}{item.price + "€"}</div><div className="itemtId">{item.productid}</div>
+                          <button onClick={() => this.removeItem(item.id)}>Remove Item</button>
+                      </div>
+                    </li>
+                  )
+                })}
+              </ul>
+            </section>
+        </main>
+        <style jsx global>{`
+          body {
+            width: 100%;
+            height: 100%;
+            background: rgb(240, 240, 240);
+            z-index: -999;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+          }
+
+          main {
+            margin: auto;
+            margin-left: 3vh;
+          }
+
+          itemInfo {
+
+          }
+
+          itemDescription {
+
+          }
+
+          itemState {
+
+          }
+
+          itemId {
+
+          }
+
+        `}
+        </style>
       </div>
     )
   }

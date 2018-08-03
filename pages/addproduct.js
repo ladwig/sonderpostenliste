@@ -2,12 +2,13 @@ import { Component } from 'react'
 import Link from 'next/link'
 import firebase from '../components/firebase'
 
+
 class AddProduct extends Component {
 
   constructor(props) {
     super(props)
     this.state = {
-       type: 'iPhone',
+       type: 'iphone',
        product: '',
        productid: '',
        price: '',
@@ -73,11 +74,8 @@ class AddProduct extends Component {
   render () {
     return (
       <div>
-        <h1>Sonderpostenliste</h1>
-        <Link href="/addproduct">
-          <a>Artikel hinzufügen</a>
-        </Link>
-
+        <Link href="index"><a>Zurück</a></Link>
+        <h1>Artikel Hinzufügen</h1>
         <form onSubmit={this.handleSubmit}>
         <select name="type" onChange={this.handleChange} value={this.state.type}>
           <option value="iphone">iPhone</option>
@@ -97,28 +95,9 @@ class AddProduct extends Component {
         <input type="text" name="number" placeholder="Anzahl" onChange={this.handleChange} value={this.state.number} />
        <button>Hinzufügen</button>
      </form>
-
-     <section className='display-item'>
-  <div className="wrapper">
-    <ul>
-      {this.state.items.map((item) => {
-        return (
-          <li key={item.id}>
-            <h3>{item.product}</h3>
-            <div>
-              <div>{item.state}{item.price}</div><div>{item.productid}</div>
-            </div>
-          </li>
-        )
-      })}
-    </ul>
-  </div>
-</section>
-
-      </div>
+    </div>
     )
   }
-
 }
 
 export default AddProduct

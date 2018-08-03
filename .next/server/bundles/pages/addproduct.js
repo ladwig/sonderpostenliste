@@ -136,7 +136,7 @@ function (_Component) {
 
     _this = _possibleConstructorReturn(this, (AddProduct.__proto__ || Object.getPrototypeOf(AddProduct)).call(this, props));
     _this.state = {
-      type: 'iPhone',
+      type: 'iphone',
       product: '',
       productid: '',
       price: '',
@@ -210,15 +210,10 @@ function (_Component) {
       return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 75
-        }
-      }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("h1", {
-        __source: {
-          fileName: _jsxFileName,
           lineNumber: 76
         }
-      }, "Sonderpostenliste"), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_next_link___default.a, {
-        href: "/addproduct",
+      }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_next_link___default.a, {
+        href: "index",
         __source: {
           fileName: _jsxFileName,
           lineNumber: 77
@@ -226,13 +221,18 @@ function (_Component) {
       }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("a", {
         __source: {
           fileName: _jsxFileName,
+          lineNumber: 77
+        }
+      }, "Zur\xFCck")), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("h1", {
+        __source: {
+          fileName: _jsxFileName,
           lineNumber: 78
         }
-      }, "Artikel hinzuf\xFCgen")), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("form", {
+      }, "Artikel Hinzuf\xFCgen"), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("form", {
         onSubmit: this.handleSubmit,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 81
+          lineNumber: 79
         }
       }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("select", {
         name: "type",
@@ -240,37 +240,37 @@ function (_Component) {
         value: this.state.type,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 82
+          lineNumber: 80
         }
       }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("option", {
         value: "iphone",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 83
+          lineNumber: 81
         }
       }, "iPhone"), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("option", {
         value: "ipad",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 84
+          lineNumber: 82
         }
       }, "iPad"), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("option", {
         value: "mac",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 85
+          lineNumber: 83
         }
       }, "Mac"), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("option", {
         value: "watch",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 86
+          lineNumber: 84
         }
       }, "Watch"), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("option", {
         value: "accessories",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 87
+          lineNumber: 85
         }
       }, "Zubeh\xF6r")), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input", {
         type: "text",
@@ -280,7 +280,7 @@ function (_Component) {
         value: this.state.product,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 89
+          lineNumber: 87
         }
       }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input", {
         type: "text",
@@ -290,7 +290,7 @@ function (_Component) {
         value: this.state.price,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 90
+          lineNumber: 88
         }
       }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input", {
         type: "text",
@@ -300,7 +300,7 @@ function (_Component) {
         value: this.state.productid,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 91
+          lineNumber: 89
         }
       }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("select", {
         name: "state",
@@ -308,25 +308,25 @@ function (_Component) {
         value: this.state.state,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 92
+          lineNumber: 90
         }
       }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("option", {
         value: "new",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 93
+          lineNumber: 91
         }
       }, "Neu"), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("option", {
         value: "used",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 94
+          lineNumber: 92
         }
       }, "R\xFCckl\xE4ufer"), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("option", {
         value: "demo",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 95
+          lineNumber: 93
         }
       }, "Demoger\xE4t")), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input", {
         type: "text",
@@ -336,59 +336,14 @@ function (_Component) {
         value: this.state.number,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 97
+          lineNumber: 95
         }
       }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("button", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 98
+          lineNumber: 96
         }
-      }, "Hinzuf\xFCgen")), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("section", {
-        className: "display-item",
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 101
-        }
-      }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", {
-        className: "wrapper",
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 102
-        }
-      }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("ul", {
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 103
-        }
-      }, this.state.items.map(function (item) {
-        return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("li", {
-          key: item.id,
-          __source: {
-            fileName: _jsxFileName,
-            lineNumber: 106
-          }
-        }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("h3", {
-          __source: {
-            fileName: _jsxFileName,
-            lineNumber: 107
-          }
-        }, item.product), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", {
-          __source: {
-            fileName: _jsxFileName,
-            lineNumber: 108
-          }
-        }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", {
-          __source: {
-            fileName: _jsxFileName,
-            lineNumber: 109
-          }
-        }, item.state, item.price), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", {
-          __source: {
-            fileName: _jsxFileName,
-            lineNumber: 109
-          }
-        }, item.productid)));
-      })))));
+      }, "Hinzuf\xFCgen")));
     }
   }]);
 
