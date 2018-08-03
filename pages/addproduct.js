@@ -1,6 +1,7 @@
 import { Component } from 'react'
 import Link from 'next/link'
 import firebase from '../components/firebase'
+import styles from '../components/css'
 
 
 class AddProduct extends Component {
@@ -95,6 +96,7 @@ class AddProduct extends Component {
         <input type="text" name="number" placeholder="Anzahl" onChange={this.handleChange} />
        <button>Hinzufügen</button>
      </form>
+     <style jsx global>{styles}</style>
     </div>
     )
   }
