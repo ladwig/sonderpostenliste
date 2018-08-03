@@ -58,7 +58,7 @@ class Index extends Component {
           <h1>Sonderpostenliste</h1>
             <section className="wrapper">
               <select name="whichOne">
-                <option selected="selected" value="all">Alle</option>
+                <option value="all">Alle</option>
                 <option value="iphone">iPhone</option>
                 <option value="ipad">iPad</option>
                 <option value="mac">Mac</option>
