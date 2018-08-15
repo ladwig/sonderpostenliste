@@ -56,6 +56,12 @@ class Index extends Component {
     }
   }
 
+  itemSold(itemid) {
+    if (confirm("Ist das Produkt wirklich verkauft?")) {
+      this.removeItem(itemid)
+    }
+  }
+
 
   render () {
 
@@ -80,8 +86,7 @@ class Index extends Component {
                       <h3>{item.product}</h3>
                       <div className="itemtInfo">
                         <div className="itemDescription">{this.itemState(item.state)}{ item.notnewinfo + '  ' + item.price + "€"}</div><div className="itemId">{item.productid}</div>
-                          <div className="removeItemButton">Entfernen</div>
-                          <div className="confirmRemoveButton" onClick={() => this.removeItem(item.id)} style={{ display: this.state.showbutton }}>Bestätigen</div>
+                          <div className="removeItemButton" onClick={ () => this.itemSold(item.id)}>Verkaufen</div>
                       </div>
                     </li>
                   )

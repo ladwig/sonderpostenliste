@@ -111,7 +111,7 @@ class AddProduct extends Component {
           <option value="used">Rückläufer</option>
           <option value="demo">Demogerät</option>
         </select>
-        <input  style={{ display: this.state.notNewInput  }} type="text" name="notnewinfo" placeholder="AppleCare, Garantie" required onChange={this.handleChange} />
+        <input  style={{ display: this.state.notNewInput  }} type="text" name="notnewinfo" placeholder="AppleCare, Garantie" onChange={this.handleChange} />
         <input type="text" name="number" placeholder="Anzahl" required onChange={this.handleChange} />
        <button>Hinzufügen</button>
      </form>
