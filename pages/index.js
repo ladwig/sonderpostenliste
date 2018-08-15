@@ -10,7 +10,7 @@ class Index extends Component {
     this.state = {
        items: [],
        showbutton: 'block',
-       whichtype: 'iphone'
+       whichtype: 'all'
      }
   }
 
@@ -79,6 +79,7 @@ console.log(this.state.whichtype)
           <Link href="addproduct"><a>Artikel hinzufügen</a></Link>
             <section className="wrapper">
             <select name="whichtype" onChange={this.handleChange}>
+              <option value="all">Alle</option>
               <option value="iphone">iPhone</option>
               <option value="ipad">iPad</option>
               <option value="mac">Mac</option>
@@ -88,7 +89,21 @@ console.log(this.state.whichtype)
 
               <ul>
                 {
+
+                
                   this.state.items.map((item) => {
+                    if (this.state.whichtype === 'all') {
+                      return (
+                        <li key={item.id}>
+                          <h3>{item.product}</h3>
+                          <div className="itemtInfo">
+                            <div className="itemDescription">{this.itemState(item.state)}{ item.notnewinfo + '  ' + item.price + "€"}</div><div className="itemId">{item.productid}</div>
+                              <div className="removeItemButton" onClick={ () => this.itemSold(item.id)}>Verkaufen</div>
+                          </div>
+                        </li>
+                      )
+                    }
+
                     if (item.type !== this.state.whichtype) {
                       return null;
                     }
