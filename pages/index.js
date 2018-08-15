@@ -1,7 +1,7 @@
 import { Component } from 'react'
 import Link from 'next/link'
 import firebase from '../components/firebase'
-import styles from '../components/css'
+
 
 class Index extends Component {
 
@@ -26,7 +26,8 @@ class Index extends Component {
           productid: items[item].productid,
           price: items[item].price,
           state: items[item].state,
-          number: items[item].number
+          number: items[item].number,
+          notnewinfo: items[item].notnewinfo
         })
       }
       this.setState({
@@ -57,11 +58,12 @@ class Index extends Component {
 
 
   render () {
+
     return (
       <div>
         <main>
+        <h1>Sonderpostenliste</h1>
           <Link href="addproduct"><a>Artikel hinzufügen</a></Link>
-          <h1>Sonderpostenliste</h1>
             <section className="wrapper">
               <select name="whichOne">
                 <option value="all">Alle</option>
@@ -77,9 +79,9 @@ class Index extends Component {
                     <li key={item.id}>
                       <h3>{item.product}</h3>
                       <div className="itemtInfo">
-                        <div className="itemDescription">{this.itemState(item.state)}{item.price + "€"}</div><div className="itemId">{item.productid}</div>
-                          <div ClassName="removeItemButton">Entfernen</div>
-                          <div ClassName="confirmRemoveButton" onClick={() => this.removeItem(item.id)} style={{ display: this.state.showbutton }}>Bestätigen</div>
+                        <div className="itemDescription">{this.itemState(item.state)}{ item.notnewinfo + '  ' + item.price + "€"}</div><div className="itemId">{item.productid}</div>
+                          <div className="removeItemButton">Entfernen</div>
+                          <div className="confirmRemoveButton" onClick={() => this.removeItem(item.id)} style={{ display: this.state.showbutton }}>Bestätigen</div>
                       </div>
                     </li>
                   )
@@ -87,7 +89,14 @@ class Index extends Component {
               </ul>
             </section>
         </main>
-        <style jsx global>{styles}</style>
+
+         <style jsx global>{`
+           @import url('https://fonts.googleapis.com/css?family=Roboto');
+           body {
+             font-family: 'Roboto', sans-serif;
+           }
+        `}</style>
+
       </div>
     )
   }

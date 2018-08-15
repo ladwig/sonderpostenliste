@@ -1,7 +1,6 @@
 import { Component } from 'react'
 import Link from 'next/link'
 import firebase from '../components/firebase'
-import styles from '../components/css'
 
 
 class AddProduct extends Component {
@@ -15,7 +14,9 @@ class AddProduct extends Component {
        price: '',
        state: 'new',
        number: '1',
-       items: []
+       items: [],
+       notnewinfo: '',
+       notNewInput: 'none'
      }
   this.handleChange = this.handleChange.bind(this);
   this.handleSubmit = this.handleSubmit.bind(this)
@@ -34,7 +35,8 @@ class AddProduct extends Component {
           productid: items[item].productid,
           price: items[item].price,
           state: items[item].state,
-          number: items[item].number
+          number: items[item].number,
+          notnewinfo: items[item].notnewinfo
         })
       }
       this.setState({
@@ -47,7 +49,21 @@ class AddProduct extends Component {
   handleChange(e) {
     this.setState({
       [e.target.name]: e.target.value
-    });
+    })
+  }
+
+  notNewInput = (e) => {
+    let value = e.target.options[e.target.selectedIndex].value
+    if (value == "used" || "demo") {
+      this.setState({
+        notNewInput: 'block'
+      })
+    }
+    if (value == "new") {
+      this.setState({
+        notNewInput: 'none'
+      })
+    }
   }
 
   handleSubmit(e) {
@@ -59,7 +75,8 @@ class AddProduct extends Component {
       productid: this.state.productid,
       price: this.state.price,
       state: this.state.state,
-      number: this.state.number
+      number: this.state.number,
+      notnewinfo: this.state.notnewinfo,
     }
     itemsRef.push(item)
     this.setState({
@@ -68,8 +85,9 @@ class AddProduct extends Component {
       productid: '',
       price: '',
       state: 'new',
-      number: '1'
-    });
+      number: '1',
+      notnewinfo: ''
+    })
   }
 
   render () {
@@ -85,18 +103,26 @@ class AddProduct extends Component {
           <option value="watch">Watch</option>
           <option value="accessories">Zubehör</option>
         </select>
-        <input type="text" name="product" placeholder="Produktname" onChange={this.handleChange} />
-        <input type="number" name="price" placeholder="Preis" onChange={this.handleChange}  />
-        <input type="number" name="productid" placeholder="ID" onChange={this.handleChange}  />
-        <select name="state" onChange={this.handleChange} >
+        <input type="text" name="product" placeholder="Produktname" required onChange={this.handleChange} />
+        <input type="number" name="price" placeholder="Preis" required onChange={this.handleChange}  />
+        <input type="number" name="productid" placeholder="ID" required onChange={this.handleChange}  />
+        <select name="state" required onChange={this.handleChange, this.notNewInput} >
           <option value="new">Neu</option>
           <option value="used">Rückläufer</option>
           <option value="demo">Demogerät</option>
         </select>
-        <input type="text" name="number" placeholder="Anzahl" onChange={this.handleChange} />
+        <input  style={{ display: this.state.notNewInput  }} type="text" name="notnewinfo" placeholder="AppleCare, Garantie" required onChange={this.handleChange} />
+        <input type="text" name="number" placeholder="Anzahl" required onChange={this.handleChange} />
        <button>Hinzufügen</button>
      </form>
-     <style jsx global>{styles}</style>
+
+     <style jsx global>{`
+       @import url('https://fonts.googleapis.com/css?family=Roboto');
+       body {
+         font-family: 'Roboto', sans-serif;
+       }
+    `}</style>
+
     </div>
     )
   }
