@@ -9,7 +9,8 @@ class Index extends Component {
     super(props)
     this.state = {
        items: [],
-       showbutton: 'block'
+       showbutton: 'block',
+       whichtype: 'iphone'
      }
   }
 
@@ -62,25 +63,36 @@ class Index extends Component {
     }
   }
 
+  handleChange = (e) => {
+    this.setState({
+      whichtype: e.target.value
+    })
+  }
+
 
   render () {
-
+console.log(this.state.whichtype)
     return (
       <div>
         <main>
         <h1>Sonderpostenliste</h1>
           <Link href="addproduct"><a>Artikel hinzufügen</a></Link>
             <section className="wrapper">
-              <select name="whichOne">
-                <option value="all">Alle</option>
-                <option value="iphone">iPhone</option>
-                <option value="ipad">iPad</option>
-                <option value="mac">Mac</option>
-                <option value="watch">Watch</option>
-                <option value="accessories">Zubehör</option>
-              </select>
+            <select name="whichtype" onChange={this.handleChange}>
+              <option value="iphone">iPhone</option>
+              <option value="ipad">iPad</option>
+              <option value="mac">Mac</option>
+              <option value="watch">Watch</option>
+              <option value="accessories">Zubehör</option>
+            </select>
+
               <ul>
-                { this.state.items.map((item) => {
+                {
+                  this.state.items.map((item) => {
+                    if (item.type !== this.state.whichtype) {
+                      return null;
+                    }
+
                   return (
                     <li key={item.id}>
                       <h3>{item.product}</h3>

@@ -81,7 +81,7 @@ class AddProduct extends Component {
     itemsRef.push(item)
     this.setState({
       product: '',
-      type: 'iPhone',
+      type: 'iphone',
       productid: '',
       price: '',
       state: 'new',
@@ -93,8 +93,8 @@ class AddProduct extends Component {
   render () {
     return (
       <div>
-        <Link href="index"><a>Zurück</a></Link>
         <h1>Artikel Hinzufügen</h1>
+        <Link href="index"><a>Zurück</a></Link>
         <form onSubmit={this.handleSubmit}>
         <select name="type" onChange={this.handleChange}>
           <option value="iphone">iPhone</option>
