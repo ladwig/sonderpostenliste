@@ -2,7 +2,7 @@ import { Component } from 'react'
 import Link from 'next/link'
 import firebase from '../components/firebase'
 import Head from 'next/head'
-import { Button, Divider, List, Container, Label, Icon, Input, Header, Image } from 'semantic-ui-react'
+import { Button, List, Container, Label, Icon, Input, Header, Image, Segment } from 'semantic-ui-react'
 
 class Index extends Component {
 
@@ -79,13 +79,12 @@ class Index extends Component {
         <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.3/semantic.min.css"></link>
       </Head>
         <main>
-        <Header as="h2">
+        <Header as="h1">
           <Image size="massive" spaced src="https://www.comacs.de/fileadmin/user_upload/comacs/01_Logos/comacs-logo.png" />
           Sonderpostenliste
+          <Header.Subheader>Geräte zu besonderen Preisen in neuwertigem oder gebrauchtem Zustand</Header.Subheader>
         </Header>
-      )
-          <Link href="addproduct"><a>Artikel hinzufügen</a></Link>
-            <section className="wrapper">
+            <Segment attached>
             <select name="whichtype" onChange={this.handleChange}>
               <option value="all">Alle</option>
               <option value="iphone">iPhone</option>
@@ -94,7 +93,6 @@ class Index extends Component {
               <option value="watch">Watch</option>
               <option value="accessories">Zubehör</option>
             </select>
-
             <Container>
               <List divided verticalAlign="middle" size="large" relaxed="very">
                 { this.state.items.map((item) => {
@@ -121,13 +119,14 @@ class Index extends Component {
                 })}
               </List>
             </Container>
-            </section>
+            </Segment>
         </main>
         <style jsx global>{`
           .numberinput {
             width: 3em;
           }
        `}</style>
+       <Link href="addproduct"><a>Artikel hinzufügen</a></Link>
       </Container>
     )
   }
