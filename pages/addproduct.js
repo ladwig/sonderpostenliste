@@ -1,6 +1,22 @@
 import { Component } from 'react'
 import Link from 'next/link'
 import firebase from '../components/firebase'
+import Head from 'next/head'
+import {
+  Button,
+  Container,
+  Grid,
+  Header,
+  Icon,
+  Image,
+  Item,
+  Label,
+  Menu,
+  Segment,
+  Step,
+  Message,
+  Form,
+} from 'semantic-ui-react'
 
 
 class AddProduct extends Component {
@@ -16,9 +32,9 @@ class AddProduct extends Component {
        number: '1',
        items: [],
        notnewinfo: '',
-       notNewInput: 'none'
+       notNewInput: 'true'
      }
-  this.handleChange = this.handleChange.bind(this);
+  this.handleChange = this.handleChange.bind(this)
   this.handleSubmit = this.handleSubmit.bind(this)
   }
 
@@ -50,18 +66,21 @@ class AddProduct extends Component {
     this.setState({
       [e.target.name]: e.target.value
     })
+    if(e.target.name == "state") {
+      this.notNewInput(e)
+    }
   }
 
   notNewInput = (e) => {
     let value = e.target.options[e.target.selectedIndex].value
     if (value == "used" || "demo") {
       this.setState({
-        notNewInput: 'block'
+        notNewInput: ''
       })
     }
     if (value == "new") {
       this.setState({
-        notNewInput: 'none'
+        notNewInput: 'true'
       })
     }
   }
@@ -91,37 +110,46 @@ class AddProduct extends Component {
   }
 
   render () {
+
     return (
       <div>
+      <Head>
+        <title>Sonderpostenliste Comacs | Artikel hinzufügen </title>
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.3/semantic.min.css"></link>
+      </Head>
         <h1>Artikel Hinzufügen</h1>
         <Link href="index"><a>Zurück</a></Link>
-        <form onSubmit={this.handleSubmit}>
-        <select name="type" onChange={this.handleChange}>
-          <option value="iphone">iPhone</option>
-          <option value="ipad">iPad</option>
-          <option value="mac">Mac</option>
-          <option value="watch">Watch</option>
-          <option value="accessories">Zubehör</option>
-        </select>
-        <input type="text" name="product" placeholder="Produktname" required onChange={this.handleChange} />
-        <input type="number" name="price" placeholder="Preis" required onChange={this.handleChange}  />
-        <input type="number" name="productid" placeholder="ID" required onChange={this.handleChange}  />
-        <select name="state" required onChange={this.handleChange, this.notNewInput} >
-          <option value="new">Neu</option>
-          <option value="used">Rückläufer</option>
-          <option value="demo">Demogerät</option>
-        </select>
-        <input  style={{ display: this.state.notNewInput  }} type="text" name="notnewinfo" placeholder="AppleCare, Garantie" onChange={this.handleChange} />
+        <Container textAlign="left">
+        <Form onSubmit={this.handleSubmit}>
+          <Form.Field label="Produktklasse" control="select" name="type" onChange={this.handleChange}>
+            <option value="iphone">iPhone</option>
+            <option value="ipad">iPad</option>
+            <option value="mac">Mac</option>
+            <option value="watch">Watch</option>
+            <option value="accessories">Zubehör</option>
+         </Form.Field>
+         <Form.Input label="Produktname" type="text" name="product" placeholder="iPhone SE 32GB"  required onChange={this.handleChange}/>
+         <Form.Input label="Preis" type="number" name="price" placeholder="345" icon="euro"  required onChange={this.handleChange}/>
+         <Form.Input label="Proukt-ID" type="number" name="productid" placeholder="12" icon="hashtag"  required onChange={this.handleChange}/>
+         <Form.Group>
+           <Form.Field label="Zustand" control="select" name="state" onChange={this.handleChange}>
+            <option value="new">Neu</option>
+            <option value="used">Rückläufer</option>
+            <option value="demo">Demogerät</option>
+          </Form.Field>
+          <Form.Input label="Garantieinformationen" type="text" name="notnewinfo" placeholder="AppleCare, Garantie (wenn Gerät nicht neu)" required onChange={this.handleChange}/>
+        </Form.Group>
         <input type="text" name="number" placeholder="Anzahl" required onChange={this.handleChange} />
-       <button>Hinzufügen</button>
-     </form>
+        <Button content='Hinzufügen' icon='plus' labelPosition='right' />
+      </Form>
 
-     <style jsx global>{`
-       @import url('https://fonts.googleapis.com/css?family=Roboto');
-       body {
-         font-family: 'Roboto', sans-serif;
-       }
-    `}</style>
+      <Message positive>
+  <Message.Header>You are eligible for a reward</Message.Header>
+  <p>
+    Go to your <b>special offers</b> page to see now.
+  </p>
+</Message>
+    </Container>
 
     </div>
     )

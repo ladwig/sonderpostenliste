@@ -1,7 +1,8 @@
 import { Component } from 'react'
 import Link from 'next/link'
 import firebase from '../components/firebase'
-
+import Head from 'next/head'
+import { Button, Divider, List, Container, Label, Icon, Input } from 'semantic-ui-react'
 
 class Index extends Component {
 
@@ -71,9 +72,12 @@ class Index extends Component {
 
 
   render () {
-console.log(this.state.whichtype)
     return (
       <div>
+      <Head>
+        <title>Sonderpostenliste Comacs </title>
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.3/semantic.min.css"></link>
+      </Head>
         <main>
         <h1>Sonderpostenliste</h1>
           <Link href="addproduct"><a>Artikel hinzufügen</a></Link>
@@ -87,48 +91,41 @@ console.log(this.state.whichtype)
               <option value="accessories">Zubehör</option>
             </select>
 
-              <ul>
-                {
-
-                
-                  this.state.items.map((item) => {
-                    if (this.state.whichtype === 'all') {
-                      return (
-                        <li key={item.id}>
-                          <h3>{item.product}</h3>
-                          <div className="itemtInfo">
-                            <div className="itemDescription">{this.itemState(item.state)}{ item.notnewinfo + '  ' + item.price + "€"}</div><div className="itemId">{item.productid}</div>
-                              <div className="removeItemButton" onClick={ () => this.itemSold(item.id)}>Verkaufen</div>
-                          </div>
-                        </li>
-                      )
-                    }
-
-                    if (item.type !== this.state.whichtype) {
-                      return null;
-                    }
-
+            <Container>
+              <List divided verticalAlign="middle" size="large" relaxed="very">
+                { this.state.items.map((item) => {
+                      if (item.type !== this.state.whichtype && this.state.whichtype !=='all') {
+                        return null;
+                      }
                   return (
-                    <li key={item.id}>
-                      <h3>{item.product}</h3>
-                      <div className="itemtInfo">
-                        <div className="itemDescription">{this.itemState(item.state)}{ item.notnewinfo + '  ' + item.price + "€"}</div><div className="itemId">{item.productid}</div>
-                          <div className="removeItemButton" onClick={ () => this.itemSold(item.id)}>Verkaufen</div>
-                      </div>
-                    </li>
+                    <List.Item>
+                      <List.Content floated="right">
+                      <Button as='div' labelPosition='left'>
+
+                         <Input labelPosition='right' className="numberinput" value={item.number} />
+
+                         <Button icon onClick={ () => this.itemSold(item.id)}>
+                           <Icon name='euro' />
+                         </Button>
+                       </Button>
+
+                      </List.Content>
+                      <List.Content>
+                        <List.Header>{item.product}</List.Header>
+                        <List.Description>{this.itemState(item.state)}{ item.notnewinfo + '  ' + item.price + "€"}</List.Description>
+                      </List.Content>
+                    </List.Item>
                   )
                 })}
-              </ul>
+              </List>
+            </Container>
             </section>
         </main>
-
-         <style jsx global>{`
-           @import url('https://fonts.googleapis.com/css?family=Roboto');
-           body {
-             font-family: 'Roboto', sans-serif;
-           }
-        `}</style>
-
+        <style jsx global>{`
+          .numberinput {
+            width: 3em;
+          }
+       `}</style>
       </div>
     )
   }
