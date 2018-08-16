@@ -2,7 +2,7 @@ import { Component } from 'react'
 import Link from 'next/link'
 import firebase from '../components/firebase'
 import Head from 'next/head'
-import { Button, Divider, List, Container, Label, Icon, Input } from 'semantic-ui-react'
+import { Button, Divider, List, Container, Label, Icon, Input, Header, Image } from 'semantic-ui-react'
 
 class Index extends Component {
 
@@ -73,13 +73,17 @@ class Index extends Component {
 
   render () {
     return (
-      <div>
+      <Container>
       <Head>
         <title>Sonderpostenliste Comacs </title>
         <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.3/semantic.min.css"></link>
       </Head>
         <main>
-        <h1>Sonderpostenliste</h1>
+        <Header as="h2">
+          <Image size="massive" spaced src="https://www.comacs.de/fileadmin/user_upload/comacs/01_Logos/comacs-logo.png" />
+          Sonderpostenliste
+        </Header>
+      )
           <Link href="addproduct"><a>Artikel hinzufügen</a></Link>
             <section className="wrapper">
             <select name="whichtype" onChange={this.handleChange}>
@@ -100,19 +104,17 @@ class Index extends Component {
                   return (
                     <List.Item>
                       <List.Content floated="right">
-                      <Button as='div' labelPosition='left'>
-
-                         <Input labelPosition='right' className="numberinput" value={item.number} />
-
-                         <Button icon onClick={ () => this.itemSold(item.id)}>
-                           <Icon name='euro' />
-                         </Button>
-                       </Button>
-
+                        <Button as='div' labelPosition='left'>
+                          <Input labelPosition='right' className="numberinput" value={item.number} />
+                          <Button icon onClick={ () => this.itemSold(item.id)}>
+                            {item.price}
+                            <Icon name='euro' />
+                          </Button>
+                        </Button>
                       </List.Content>
                       <List.Content>
                         <List.Header>{item.product}</List.Header>
-                        <List.Description>{this.itemState(item.state)}{ item.notnewinfo + '  ' + item.price + "€"}</List.Description>
+                        <List.Description>{this.itemState(item.state)}{ item.notnewinfo}</List.Description>
                       </List.Content>
                     </List.Item>
                   )
@@ -126,7 +128,7 @@ class Index extends Component {
             width: 3em;
           }
        `}</style>
-      </div>
+      </Container>
     )
   }
 }
