@@ -2,22 +2,7 @@ import { Component } from 'react'
 import Link from 'next/link'
 import firebase from '../components/firebase'
 import Head from 'next/head'
-import {
-  Button,
-  Container,
-  Grid,
-  Header,
-  Icon,
-  Image,
-  Item,
-  Label,
-  Menu,
-  Segment,
-  Step,
-  Message,
-  Form,
-} from 'semantic-ui-react'
-
+import { Button, Container, Grid ,Header, Icon, Image, Item, Label, Menu,Segment,Step, Message, Form,} from 'semantic-ui-react'
 
 class AddProduct extends Component {
 
@@ -112,14 +97,17 @@ class AddProduct extends Component {
   render () {
 
     return (
-      <div>
+      <Container>
       <Head>
         <title>Sonderpostenliste Comacs | Artikel hinzufügen </title>
         <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.3/semantic.min.css"></link>
       </Head>
-        <h1>Artikel Hinzufügen</h1>
+      <Header as="h1">
+        Artikel hinzufügen
+        <Header.Subheader>Geräte zu besonderen Preisen in neuwertigem oder gebrauchtem Zustand</Header.Subheader>
+      </Header>
         <Link href="index"><a>Zurück</a></Link>
-        <Container textAlign="left">
+        <Segment attached>
         <Form onSubmit={this.handleSubmit}>
           <Form.Field label="Produktklasse" control="select" name="type" onChange={this.handleChange}>
             <option value="iphone">iPhone</option>
@@ -130,20 +118,25 @@ class AddProduct extends Component {
          </Form.Field>
          <Form.Input label="Produktname" type="text" name="product" placeholder="iPhone SE 32GB"  required onChange={this.handleChange}/>
          <Form.Input label="Preis" type="number" name="price" placeholder="345" icon="euro"  required onChange={this.handleChange}/>
-         <Form.Input label="Proukt-ID" type="number" name="productid" placeholder="12" icon="hashtag"  required onChange={this.handleChange}/>
-         <Form.Group>
-           <Form.Field label="Zustand" control="select" name="state" required onChange={this.handleChange}>
+         <Form.Group widths='equal'>
+         <Form.Input fluid label="Proukt-ID" type="number" name="productid" placeholder="12" icon="hashtag"  required onChange={this.handleChange}/>
+           <Form.Field fluid label="Zustand" control="select" name="state" required onChange={this.handleChange}>
             <option value="new">Neu</option>
             <option value="used">Rückläufer</option>
             <option value="demo">Demogerät</option>
           </Form.Field>
-          <Form.Input label="Garantieinformationen" disabled={this.state.notNewInput} required={!this.state.notNewInput} type="text" name="notnewinfo" placeholder="AppleCare, Garantie (wenn Gerät nicht neu)" onChange={this.handleChange}/>
+          <Form.Input fluid label="Garantieinformationen" disabled={this.state.notNewInput} required={!this.state.notNewInput} type="text" name="notnewinfo" placeholder="AppleCare, Garantie (wenn Gerät nicht neu)" onChange={this.handleChange}/>
+         <Form.Input fluid label="Anzahl" type="number" name="number" placeholder="1" icon="tag"  required onChange={this.handleChange}/>
         </Form.Group>
-        <input type="text" name="number" placeholder="Anzahl" required onChange={this.handleChange} />
-        <Button content='Hinzufügen' icon='plus' labelPosition='right' />
+        <Button fluid content='Hinzufügen' icon='plus' labelPosition='right' />
       </Form>
+    </Segment>
+    <style jsx global>{`
+      .container {
+        margin-top: 1em;
+      }
+   `}</style>
     </Container>
-    </div>
     )
   }
 }

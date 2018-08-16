@@ -10,7 +10,6 @@ class Index extends Component {
     super(props)
     this.state = {
        items: [],
-       showbutton: 'block',
        whichtype: 'all'
      }
   }
@@ -39,14 +38,8 @@ class Index extends Component {
   }
 
   removeItem(itemId) {
-  const itemRef = firebase.database().ref(`/items/${itemId}`);
-  itemRef.remove();
-  }
-
-  test(state) {
-    if(state){
-      console.log("geladen")
-    }
+    const itemRef = firebase.database().ref(`/items/${itemId}`);
+    itemRef.remove();
   }
 
   itemState(state) {
@@ -72,7 +65,6 @@ class Index extends Component {
     })
   }
 
-
   render () {
     return (
       <Container>
@@ -81,10 +73,10 @@ class Index extends Component {
         <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.3/semantic.min.css"></link>
       </Head>
         <main>
-        <Header as="h1">
+        <Header className="header" as="h1">
           <Image size="massive" spaced src="https://www.comacs.de/fileadmin/user_upload/comacs/01_Logos/comacs-logo.png" />
           Sonderpostenliste
-          <Button floated="right" size="medium"><Link href="addproduct"><a>Artikel hinzufügen</a></Link></Button>
+          <Link href="addproduct"><Button floated="right" size="medium">Artikel hinzufügen</Button></Link>
           <Header.Subheader>Geräte zu besonderen Preisen in neuwertigem oder gebrauchtem Zustand</Header.Subheader>
         </Header>
             <Segment attached>
@@ -127,6 +119,10 @@ class Index extends Component {
         <style jsx global>{`
           .numberinput {
             width: 3em;
+          }
+
+          .container {
+            margin-top: 1em;
           }
        `}</style>
       </Container>
