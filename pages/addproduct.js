@@ -132,23 +132,16 @@ class AddProduct extends Component {
          <Form.Input label="Preis" type="number" name="price" placeholder="345" icon="euro"  required onChange={this.handleChange}/>
          <Form.Input label="Proukt-ID" type="number" name="productid" placeholder="12" icon="hashtag"  required onChange={this.handleChange}/>
          <Form.Group>
-           <Form.Field label="Zustand" control="select" name="state" onChange={this.handleChange}>
+           <Form.Field label="Zustand" control="select" name="state" required onChange={this.handleChange}>
             <option value="new">Neu</option>
             <option value="used">Rückläufer</option>
             <option value="demo">Demogerät</option>
           </Form.Field>
-          <Form.Input label="Garantieinformationen" type="text" name="notnewinfo" placeholder="AppleCare, Garantie (wenn Gerät nicht neu)" required onChange={this.handleChange}/>
+          <Form.Input label="Garantieinformationen" disabled={this.state.notNewInput} required={!this.state.notNewInput} type="text" name="notnewinfo" placeholder="AppleCare, Garantie (wenn Gerät nicht neu)" onChange={this.handleChange}/>
         </Form.Group>
         <input type="text" name="number" placeholder="Anzahl" required onChange={this.handleChange} />
         <Button content='Hinzufügen' icon='plus' labelPosition='right' />
       </Form>
-
-            <Message positive>
-        <Message.Header>You are eligible for a reward</Message.Header>
-        <p>
-          Go to your <b>special offers</b> page to see now.
-        </p>
-      </Message>
     </Container>
     </div>
     )
