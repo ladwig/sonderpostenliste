@@ -43,8 +43,10 @@ class Index extends Component {
   itemRef.remove();
   }
 
-  confirmRemoveItem(itemId) {
-
+  test(state) {
+    if(state){
+      console.log("geladen")
+    }
   }
 
   itemState(state) {
@@ -82,6 +84,7 @@ class Index extends Component {
         <Header as="h1">
           <Image size="massive" spaced src="https://www.comacs.de/fileadmin/user_upload/comacs/01_Logos/comacs-logo.png" />
           Sonderpostenliste
+          <Button floated="right" size="medium"><Link href="addproduct"><a>Artikel hinzufügen</a></Link></Button>
           <Header.Subheader>Geräte zu besonderen Preisen in neuwertigem oder gebrauchtem Zustand</Header.Subheader>
         </Header>
             <Segment attached>
@@ -126,7 +129,6 @@ class Index extends Component {
             width: 3em;
           }
        `}</style>
-       <Link href="addproduct"><a>Artikel hinzufügen</a></Link>
       </Container>
     )
   }
