@@ -14,7 +14,6 @@ class Index extends Component {
        whichtype: 'all',
        user:{}
      }
-     this.logout = this.logout.bind(this)
   }
 
   componentDidMount() {
@@ -51,7 +50,7 @@ class Index extends Component {
     })
   }
 
-  logout() {
+  logout = (e) => {
     firebase.auth().signOut()
     console.log("ausgeloggt")
   }
@@ -94,11 +93,26 @@ class Index extends Component {
         <Header className="header" as="h1">
           <Image size="massive" spaced src="https://www.comacs.de/fileadmin/user_upload/comacs/01_Logos/comacs-logo.png" />
           Sonderpostenliste
-          <Link href="addproduct"><Button floated="right" size="medium">Artikel hinzufügen</Button></Link>
+          <Modal trigger={
+            <Button animated>
+            <Button.Content visible>Login</Button.Content>
+            <Button.Content hidden>
+              <Icon name="arrow right" />
+          </Button.Content>
+          </Button>
+          }>
+            <Modal.Header>Login</Modal.Header>
+            <Modal.Content>
+              <Modal.Description>
+                <Header>Um Artikel hinzufügen/verkaufen zu können, musst du dich anmelden.</Header>
+              </Modal.Description>
+              <Login/>
+            </Modal.Content>
+        </Modal>
           <Header.Subheader>Geräte zu besonderen Preisen in neuwertigem oder gebrauchtem Zustand</Header.Subheader>
         </Header>
             <Segment attached>
-            <div> {this.state.user ? console.log(this.state.user) : (<Login/>)}<button onClick={this.logout}>Logout</button></div>
+            <div> {this.state.user ? <div>eingeloggt</div> : <div>ausgeloggt</div>}<button onClick={this.logout}>Logout</button></div>
             <select name="whichtype" onChange={this.handleChange}>
               <option value="all">Alle</option>
               <option value="iphone">iPhone</option>
