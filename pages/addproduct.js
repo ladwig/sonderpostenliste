@@ -1,6 +1,6 @@
 import { Component } from 'react'
 import Link from 'next/link'
-import firebase from '../components/firebase'
+import firebase from '../config/firebase'
 import Head from 'next/head'
 import { Button, Container, Grid ,Header, Icon, Image, Item, Label, Menu,Segment,Step, Message, Form,} from 'semantic-ui-react'
 
@@ -128,7 +128,7 @@ class AddProduct extends Component {
           <Form.Input fluid label="Garantieinformationen" disabled={this.state.notNewInput} required={!this.state.notNewInput} type="text" name="notnewinfo" placeholder="AppleCare, Garantie (wenn Gerät nicht neu)" onChange={this.handleChange}/>
          <Form.Input fluid label="Anzahl" type="number" name="number" placeholder="1" icon="tag"  required onChange={this.handleChange}/>
         </Form.Group>
-        <Button fluid content='Hinzufügen' icon='plus' labelPosition='right' />
+        <Button fluid content="Hinzufügen" icon="plus" labelPosition="right" />
       </Form>
     </Segment>
     <style jsx global>{`

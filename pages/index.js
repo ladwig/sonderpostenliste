@@ -1,8 +1,9 @@
 import { Component } from 'react'
 import Link from 'next/link'
-import firebase from '../components/firebase'
+import firebase from '../config/firebase'
 import Head from 'next/head'
-import { Button, List, Container, Label, Icon, Input, Header, Image, Segment } from 'semantic-ui-react'
+import Login from '../components/login'
+import { Button, List, Container, Label, Icon, Input, Header, Image, Segment, Modal } from 'semantic-ui-react'
 
 class Index extends Component {
 
@@ -10,8 +11,10 @@ class Index extends Component {
     super(props)
     this.state = {
        items: [],
-       whichtype: 'all'
+       whichtype: 'all',
+       user:{}
      }
+     this.logout = this.logout.bind(this)
   }
 
   componentDidMount() {
@@ -35,6 +38,22 @@ class Index extends Component {
         items: newState
       })
     })
+    this.authListener()
+  }
+
+  authListener() {
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        this.setState({ user })
+      } else {
+        this.setState({user: null })
+      }
+    })
+  }
+
+  logout() {
+    firebase.auth().signOut()
+    console.log("ausgeloggt")
   }
 
   removeItem(itemId) {
@@ -72,7 +91,6 @@ class Index extends Component {
         <title>Sonderpostenliste Comacs </title>
         <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.3/semantic.min.css"></link>
       </Head>
-        <main>
         <Header className="header" as="h1">
           <Image size="massive" spaced src="https://www.comacs.de/fileadmin/user_upload/comacs/01_Logos/comacs-logo.png" />
           Sonderpostenliste
@@ -80,6 +98,7 @@ class Index extends Component {
           <Header.Subheader>Geräte zu besonderen Preisen in neuwertigem oder gebrauchtem Zustand</Header.Subheader>
         </Header>
             <Segment attached>
+            <div> {this.state.user ? console.log(this.state.user) : (<Login/>)}<button onClick={this.logout}>Logout</button></div>
             <select name="whichtype" onChange={this.handleChange}>
               <option value="all">Alle</option>
               <option value="iphone">iPhone</option>
@@ -115,7 +134,6 @@ class Index extends Component {
               </List>
             </Container>
             </Segment>
-        </main>
         <style jsx global>{`
           .numberinput {
             width: 3em;
