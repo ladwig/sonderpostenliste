@@ -2,7 +2,8 @@ import { Component } from 'react'
 import Link from 'next/link'
 import firebase from '../config/firebase'
 import Head from 'next/head'
-import { Button, Container, Grid ,Header, Icon, Image, Item, Label, Menu,Segment,Step, Message, Form,} from 'semantic-ui-react'
+import Footer from '../components/footer'
+import { Button, Container, Header, Icon, Image, Item, Label, Menu, Segment, Message, Form} from 'semantic-ui-react'
 
 class AddProduct extends Component {
 
@@ -17,7 +18,8 @@ class AddProduct extends Component {
        number: '1',
        items: [],
        notnewinfo: '',
-       notNewInput: 'true'
+       notNewInput: 'true',
+       user:{}
      }
   this.handleChange = this.handleChange.bind(this)
   this.handleSubmit = this.handleSubmit.bind(this)
@@ -46,6 +48,15 @@ class AddProduct extends Component {
     })
   }
 
+  authListener() {
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        this.setState({ user })
+      } else {
+        this.setState({user: null })
+      }
+    })
+  }
 
   handleChange(e) {
     this.setState({
@@ -96,6 +107,7 @@ class AddProduct extends Component {
 
   render () {
 
+    if(this.state.user) { console.log("ok")}
     return (
       <Container>
       <Head>
@@ -131,13 +143,14 @@ class AddProduct extends Component {
         <Button fluid content="Hinzufügen" icon="plus" labelPosition="right" />
       </Form>
     </Segment>
+    <Footer/>
     <style jsx global>{`
       .container {
         margin-top: 1em;
       }
    `}</style>
     </Container>
-    )
+  )
   }
 }
 

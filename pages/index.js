@@ -2,8 +2,8 @@ import { Component } from 'react'
 import Link from 'next/link'
 import firebase from '../config/firebase'
 import Head from 'next/head'
-import Login from '../components/login'
-import { Button, List, Container, Label, Icon, Input, Header, Image, Segment, Modal } from 'semantic-ui-react'
+import Footer from '../components/footer'
+import { Button, List, Container, Label, Icon, Input, Header, Image, Segment} from 'semantic-ui-react'
 
 class Index extends Component {
 
@@ -12,7 +12,7 @@ class Index extends Component {
     this.state = {
        items: [],
        whichtype: 'all',
-       user:{}
+       user:{},
      }
   }
 
@@ -50,11 +50,6 @@ class Index extends Component {
     })
   }
 
-  logout = (e) => {
-    firebase.auth().signOut()
-    console.log("ausgeloggt")
-  }
-
   removeItem(itemId) {
     const itemRef = firebase.database().ref(`/items/${itemId}`);
     itemRef.remove();
@@ -72,9 +67,11 @@ class Index extends Component {
   }
 
   itemSold(itemid) {
+    if(this.state.user) {
     if (confirm("Ist das Produkt wirklich verkauft?")) {
       this.removeItem(itemid)
     }
+  }
   }
 
   handleChange = (e) => {
@@ -93,26 +90,9 @@ class Index extends Component {
         <Header className="header" as="h1">
           <Image size="massive" spaced src="https://www.comacs.de/fileadmin/user_upload/comacs/01_Logos/comacs-logo.png" />
           Sonderpostenliste
-          <Modal trigger={
-            <Button animated>
-            <Button.Content visible>Login</Button.Content>
-            <Button.Content hidden>
-              <Icon name="arrow right" />
-          </Button.Content>
-          </Button>
-          }>
-            <Modal.Header>Login</Modal.Header>
-            <Modal.Content>
-              <Modal.Description>
-                <Header>Um Artikel hinzufügen/verkaufen zu können, musst du dich anmelden.</Header>
-              </Modal.Description>
-              <Login/>
-            </Modal.Content>
-        </Modal>
           <Header.Subheader>Geräte zu besonderen Preisen in neuwertigem oder gebrauchtem Zustand</Header.Subheader>
         </Header>
             <Segment attached>
-            <div> {this.state.user ? <div>eingeloggt</div> : <div>ausgeloggt</div>}<button onClick={this.logout}>Logout</button></div>
             <select name="whichtype" onChange={this.handleChange}>
               <option value="all">Alle</option>
               <option value="iphone">iPhone</option>
@@ -130,7 +110,7 @@ class Index extends Component {
                   return (
                     <List.Item>
                       <List.Content floated="right">
-                        <Button as='div' labelPosition='left'>
+                         <Button as='div' labelPosition='left'>
                           <Input labelPosition='right' className="numberinput" value={item.number} />
                           <Button icon onClick={ () => this.itemSold(item.id)}>
                             {item.price}
@@ -148,6 +128,8 @@ class Index extends Component {
               </List>
             </Container>
             </Segment>
+          <Footer/>
+
         <style jsx global>{`
           .numberinput {
             width: 3em;
