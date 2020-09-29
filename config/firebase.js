@@ -1,12 +1,12 @@
 import * as firebase from 'firebase'
 
 const config = {
-  apiKey: "AIzaSyCy6RYP2fHqCzP_LF68zvJlKG8UBzJIUA0",
+  apiKey: "xxx",
   authDomain: "sonderpostenliste.firebaseapp.com",
   databaseURL: "https://sonderpostenliste.firebaseio.com",
   projectId: "sonderpostenliste",
   storageBucket: "sonderpostenliste.appspot.com",
-  messagingSenderId: "388109605764"
+  messagingSenderId: "xxx"
 }
 
 export default !firebase.apps.length ? firebase.initializeApp(config) : firebase.app();
